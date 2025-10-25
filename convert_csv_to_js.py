@@ -13,19 +13,25 @@ def convert_csv_to_js(csv_file, js_file):
     recipe_id = 1
     
     with open(csv_file, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        
+        reader = csv.DictReader(f)
+
         for row in reader:
-            # 跳过注释行和空行
-            if not row or row[0].startswith('#'):
+            # 跳过空行
+            if not row or not row.get('name'):
                 continue
-            
-            # 检查字段数量
-            if len(row) < 8:
-                print(f"跳过字段不足的行: {row}")
+
+            # 跳过注释行
+            if row['name'].startswith('#'):
                 continue
-            
-            name, desc, ingredients, cookware, difficulty, time, url, category = row
+
+            name = row['name']
+            desc = row['description']
+            ingredients = row['ingredients']
+            cookware = row['cookware']
+            difficulty = row['difficulty']
+            time = row['cookingTime']
+            url = row['bilibiliUrl']
+            category = row['category']
             
             # 构建菜谱对象
             recipe = {

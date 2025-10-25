@@ -2,21 +2,6 @@
 const recipes = [
   {
     "id": 1,
-    "name": "name",
-    "description": "description",
-    "ingredients": [
-      "ingredients"
-    ],
-    "cookware": [
-      "cookware"
-    ],
-    "difficulty": "difficulty",
-    "cookingTime": 0,
-    "bilibiliUrl": "bilibiliUrl",
-    "category": "category"
-  },
-  {
-    "id": 2,
     "name": "红烧肉",
     "description": "王刚的红烧肉",
     "ingredients": [
@@ -43,7 +28,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "回锅肉",
     "description": "王刚的回锅肉",
     "ingredients": [
@@ -71,7 +56,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "宫保鸡丁",
     "description": "王刚的宫保鸡丁",
     "ingredients": [
@@ -102,7 +87,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 5,
+    "id": 4,
     "name": "小炒肉",
     "description": "王刚的小炒肉",
     "ingredients": [
@@ -129,7 +114,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "扬州炒饭",
     "description": "王刚的扬州炒饭",
     "ingredients": [
@@ -156,7 +141,7 @@ const recipes = [
     "category": "主食"
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "辣子鸡",
     "description": "王刚的辣子鸡",
     "ingredients": [
@@ -184,7 +169,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 8,
+    "id": 7,
     "name": "蚂蚁上树",
     "description": "王刚的蚂蚁上树",
     "ingredients": [
@@ -212,7 +197,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "黄焖鸡",
     "description": "王刚的黄焖鸡",
     "ingredients": [
@@ -242,7 +227,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "鱼香肉丝",
     "description": "王刚的鱼香肉丝",
     "ingredients": [
@@ -273,7 +258,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 11,
+    "id": 10,
     "name": "麻婆豆腐",
     "description": "王刚的麻婆豆腐",
     "ingredients": [
@@ -301,7 +286,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 12,
+    "id": 11,
     "name": "水煮肉片",
     "description": "王刚的水煮肉片",
     "ingredients": [
@@ -331,7 +316,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 13,
+    "id": 12,
     "name": "糖醋排骨",
     "description": "王刚的糖醋排骨",
     "ingredients": [
@@ -357,7 +342,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 14,
+    "id": 13,
     "name": "西红柿炒蛋",
     "description": "王刚的西红柿炒蛋",
     "ingredients": [
@@ -380,7 +365,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 15,
+    "id": 14,
     "name": "蛋炒饭",
     "description": "王刚的蛋炒饭",
     "ingredients": [
@@ -402,7 +387,7 @@ const recipes = [
     "category": "主食"
   },
   {
-    "id": 16,
+    "id": 15,
     "name": "地三鲜",
     "description": "王刚的地三鲜",
     "ingredients": [
@@ -429,7 +414,7 @@ const recipes = [
     "category": "素菜"
   },
   {
-    "id": 17,
+    "id": 16,
     "name": "干煸四季豆",
     "description": "王刚的干煸四季豆",
     "ingredients": [
@@ -456,7 +441,7 @@ const recipes = [
     "category": "素菜"
   },
   {
-    "id": 18,
+    "id": 17,
     "name": "虎皮青椒",
     "description": "王刚的虎皮青椒",
     "ingredients": [
@@ -480,7 +465,7 @@ const recipes = [
     "category": "素菜"
   },
   {
-    "id": 19,
+    "id": 18,
     "name": "京酱肉丝",
     "description": "王刚的京酱肉丝",
     "ingredients": [
@@ -506,7 +491,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 20,
+    "id": 19,
     "name": "木须肉",
     "description": "王刚的木须肉",
     "ingredients": [
@@ -532,7 +517,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 21,
+    "id": 20,
     "name": "东坡肉",
     "description": "王刚的东坡肉",
     "ingredients": [
@@ -559,7 +544,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 22,
+    "id": 21,
     "name": "糖醋里脊",
     "description": "王刚的糖醋里脊",
     "ingredients": [
@@ -587,7 +572,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 23,
+    "id": 22,
     "name": "可乐鸡翅",
     "description": "王刚的可乐鸡翅",
     "ingredients": [
@@ -611,7 +596,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 24,
+    "id": 23,
     "name": "青椒肉丝",
     "description": "王刚的青椒肉丝",
     "ingredients": [
@@ -637,7 +622,7 @@ const recipes = [
     "category": "家常菜"
   },
   {
-    "id": 25,
+    "id": 24,
     "name": "红烧茄子",
     "description": "王刚的红烧茄子",
     "ingredients": [
@@ -663,7 +648,7 @@ const recipes = [
     "category": "素菜"
   },
   {
-    "id": 26,
+    "id": 25,
     "name": "酸辣土豆丝",
     "description": "王刚的酸辣土豆丝",
     "ingredients": [
@@ -689,7 +674,7 @@ const recipes = [
     "category": "素菜"
   },
   {
-    "id": 27,
+    "id": 26,
     "name": "鱼香茄子",
     "description": "王刚的鱼香茄子",
     "ingredients": [
@@ -717,7 +702,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 28,
+    "id": 27,
     "name": "红烧鱼",
     "description": "王刚的红烧鱼",
     "ingredients": [
@@ -746,7 +731,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 29,
+    "id": 28,
     "name": "炒河粉",
     "description": "王刚的炒河粉",
     "ingredients": [
@@ -769,7 +754,7 @@ const recipes = [
     "category": "面食"
   },
   {
-    "id": 30,
+    "id": 29,
     "name": "凉拌黄瓜",
     "description": "王刚的凉拌黄瓜",
     "ingredients": [
