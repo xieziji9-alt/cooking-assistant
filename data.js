@@ -633,7 +633,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Yx411q7Qv",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1aW411F7pR",
     "category": "家常菜"
   },
   {
@@ -690,29 +690,6 @@ const recipes = [
   },
   {
     "id": 27,
-    "name": "番茄炒蛋",
-    "description": "王刚的番茄炒蛋",
-    "ingredients": [
-      "西红柿",
-      "鸡蛋",
-      "白糖",
-      "盐",
-      "食用油",
-      "葱"
-    ],
-    "cookware": [
-      "炒锅",
-      "菜刀",
-      "砧板",
-      "锅铲"
-    ],
-    "difficulty": "简单",
-    "cookingTime": 10,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1s4411C7zH",
-    "category": "家常菜"
-  },
-  {
-    "id": 28,
     "name": "鱼香茄子",
     "description": "王刚的鱼香茄子",
     "ingredients": [
@@ -740,7 +717,7 @@ const recipes = [
     "category": "川菜"
   },
   {
-    "id": 29,
+    "id": 28,
     "name": "红烧鱼",
     "description": "王刚的红烧鱼",
     "ingredients": [
@@ -769,7 +746,7 @@ const recipes = [
     "category": "荤菜"
   },
   {
-    "id": 30,
+    "id": 29,
     "name": "炒河粉",
     "description": "王刚的炒河粉",
     "ingredients": [
@@ -792,7 +769,7 @@ const recipes = [
     "category": "面食"
   },
   {
-    "id": 31,
+    "id": 30,
     "name": "凉拌黄瓜",
     "description": "王刚的凉拌黄瓜",
     "ingredients": [
