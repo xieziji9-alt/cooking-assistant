@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建GitHub Token - 详细教程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step h2 {
+            display: inline-block;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .step ol {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+        
+        .step li {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #856404;
+            font-weight: bold;
+        }
+        
+        .code {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: "Consolas", monospace;
+            margin: 15px 0;
+            border-left: 3px solid #667eea;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .warning h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .success h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .screenshot {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .checklist {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .checklist h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .checklist label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist label:hover {
+            background: #e7f0ff;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 创建GitHub Personal Access Token</h1>
+        
+        <div class="warning">
+            <h3>⚠️ 重要提示</h3>
+            <p><strong>Token只会显示一次！</strong>创建后请立即复制并保存到安全的地方。</p>
+            <p>如果忘记了Token，需要重新创建一个新的。</p>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <h2>访问Token设置页面</h2>
+            <ol>
+                <li>点击下面的按钮，或访问：<br>
+                    <div class="code">https://github.com/settings/tokens</div>
+                </li>
+                <li>如果未登录，先登录您的GitHub账号</li>
+            </ol>
+            <a href="https://github.com/settings/tokens" class="btn" target="_blank">打开Token设置页面</a>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <h2>创建新Token</h2>
+            <ol>
+                <li>在页面右上角，点击 <span class="highlight">Generate new token</span> 按钮</li>
+                <li>在下拉菜单中，选择 <span class="highlight">Generate new token (classic)</span></li>
+                <div class="screenshot">
+                    📸 这里会显示一个下拉菜单，选择 "classic" 版本
+                </div>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <h2>配置Token</h2>
+            <ol>
+                <li><strong>Note（备注）：</strong>填写 <span class="highlight">cooking-assistant</span>
+                    <div class="screenshot">这是Token的名称，方便您识别</div>
+                </li>
+                
+                <li><strong>Expiration（过期时间）：</strong>选择 <span class="highlight">No expiration</span>（永不过期）
+                    <div class="screenshot">或者选择一个较长的时间，如90天</div>
+                </li>
+                
+                <li><strong>Select scopes（选择权限）：</strong>勾选 <span class="highlight">repo</span>
+                    <div class="screenshot">
+                        ✅ 勾选 "repo" 这一项<br>
+                        （会自动勾选下面的所有子选项）
+                    </div>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">4</span>
+            <h2>生成Token</h2>
+            <ol>
+                <li>滚动到页面底部</li>
+                <li>点击绿色按钮 <span class="highlight">Generate token</span></li>
+                <li>页面会刷新，显示您的新Token</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">5</span>
+            <h2>复制Token</h2>
+            <ol>
+                <li>您会看到一个绿色的Token字符串，类似：
+                    <div class="code">ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+                </li>
+                <li>点击Token右边的 <span class="highlight">📋 复制</span> 图标</li>
+                <li><strong>立即保存到安全的地方！</strong>（记事本、密码管理器等）</li>
+            </ol>
+            
+            <div class="warning">
+                <h3>⚠️ 重要！</h3>
+                <p>Token只会显示这一次！离开页面后就无法再看到了。</p>
+                <p>如果忘记复制，需要删除这个Token并重新创建。</p>
+            </div>
+        </div>
+        
+        <div class="success">
+            <h3>✅ Token创建成功！</h3>
+            <p>现在您可以使用这个Token来运行自动上传脚本了！</p>
+        </div>
+        
+        <div class="checklist">
+            <h3>📋 操作检查清单</h3>
+            <label>
+                <input type="checkbox"> 访问了Token设置页面
+            </label>
+            <label>
+                <input type="checkbox"> 点击了 "Generate new token (classic)"
+            </label>
+            <label>
+                <input type="checkbox"> Note 填写了 "cooking-assistant"
+            </label>
+            <label>
+                <input type="checkbox"> Expiration 选择了 "No expiration"
+            </label>
+            <label>
+                <input type="checkbox"> 勾选了 "repo" 权限
+            </label>
+            <label>
+                <input type="checkbox"> 点击了 "Generate token"
+            </label>
+            <label>
+                <input type="checkbox"> 复制了Token并保存到安全的地方
+            </label>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">6</span>
+            <h2>使用Token</h2>
+            <ol>
+                <li>双击运行 <span class="highlight">GitHub一键上传.bat</span> 脚本</li>
+                <li>当提示输入Token时，粘贴您刚才复制的Token</li>
+                <li>按回车，脚本会自动完成上传</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://github.com/settings/tokens" class="btn" target="_blank">🔑 创建Token</a>
+            <a href="#" class="btn" onclick="alert('请双击运行：GitHub一键上传.bat'); return false;">🚀 运行上传脚本</a>
+        </div>
+        
+        <div class="warning" style="margin-top: 40px;">
+            <h3>🆘 遇到问题？</h3>
+            <p><strong>问题1：找不到 "Generate new token" 按钮</strong></p>
+            <p>→ 确保已登录GitHub账号</p>
+            <p>→ 刷新页面重试</p>
+            <br>
+            <p><strong>问题2：没有 "classic" 选项</strong></p>
+            <p>→ 直接选择 "Generate new token"</p>
+            <p>→ 或者选择 "Fine-grained token"（需要更多配置）</p>
+            <br>
+            <p><strong>问题3：忘记复制Token</strong></p>
+            <p>→ 删除刚创建的Token</p>
+            <p>→ 重新创建一个新的</p>
+        </div>
+    </div>
+</body>
+</html>
+

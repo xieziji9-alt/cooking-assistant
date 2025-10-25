@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render.com 一键部署教程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            padding: 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        h1 {
+            color: #0f2027;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.8em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .highlight-box h2 {
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        
+        .highlight-box p {
+            font-size: 1.2em;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 5px solid #0f2027;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step h2 {
+            display: inline-block;
+            color: #333;
+            margin-bottom: 20px;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+        
+        .step ol {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+        
+        .step li {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.1em;
+        }
+        
+        .code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: "Consolas", monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #856404;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(15, 32, 39, 0.4);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 1.3em;
+            padding: 20px 40px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .success h3 {
+            color: #155724;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border-left: 5px solid #17a2b8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .comparison-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .comparison-item h3 {
+            color: #0f2027;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-item.recommended {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .comparison-item.recommended h3 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Render.com 部署教程</h1>
+        <div class="subtitle">最简单的免费网站部署方案</div>
+        
+        <div class="highlight-box">
+            <h2>✨ 为什么选择 Render？</h2>
+            <p>✅ 完全免费 ✅ 无需配置 ✅ 自动部署 ✅ 全球CDN</p>
+        </div>
+        
+        <div class="comparison">
+            <div class="comparison-item">
+                <h3>GitHub Pages</h3>
+                <p>✅ 免费<br>❌ 需要Token<br>❌ 需要Git命令<br>⭐⭐⭐ 中等难度</p>
+            </div>
+            <div class="comparison-item recommended">
+                <h3>🏆 Render.com</h3>
+                <p>✅ 免费<br>✅ 无需Token<br>✅ 网页操作<br>⭐⭐⭐⭐⭐ 超简单</p>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>📋 前提条件</h3>
+            <p>您需要先把文件上传到GitHub仓库（我们已经创建了仓库：<code>cooking-assistant</code>）</p>
+            <p>如果还没上传，请先完成GitHub上传步骤。</p>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <h2>登录Render</h2>
+            <ol>
+                <li>访问：<a href="https://dashboard.render.com" target="_blank">https://dashboard.render.com</a></li>
+                <li>使用GitHub账号登录（点击 <span class="highlight">Sign in with GitHub</span>）</li>
+                <li>授权Render访问您的GitHub账号</li>
+            </ol>
+            <a href="https://dashboard.render.com" class="btn" target="_blank">打开Render Dashboard</a>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <h2>创建新的Static Site</h2>
+            <ol>
+                <li>在Dashboard页面，点击 <span class="highlight">New +</span> 按钮（右上角）</li>
+                <li>在下拉菜单中选择 <span class="highlight">Static Site</span></li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <h2>连接GitHub仓库</h2>
+            <ol>
+                <li>在 "Connect a repository" 页面，找到您的仓库：
+                    <div class="code">xieziji9-alt/cooking-assistant</div>
+                </li>
+                <li>点击仓库右边的 <span class="highlight">Connect</span> 按钮</li>
+                <li>如果看不到仓库，点击 <span class="highlight">Configure account</span> 授权访问</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">4</span>
+            <h2>配置部署设置</h2>
+            <ol>
+                <li><strong>Name（名称）：</strong>填写
+                    <div class="code">cooking-assistant</div>
+                    （或任何您喜欢的名字）
+                </li>
+                
+                <li><strong>Branch（分支）：</strong>选择
+                    <div class="code">main</div>
+                </li>
+                
+                <li><strong>Root Directory（根目录）：</strong>填写
+                    <div class="code">website</div>
+                    （因为我们的文件在website文件夹里）
+                </li>
+                
+                <li><strong>Build Command（构建命令）：</strong>留空
+                    <div class="code">（不需要填写）</div>
+                </li>
+                
+                <li><strong>Publish Directory（发布目录）：</strong>填写
+                    <div class="code">.</div>
+                    （一个点，表示当前目录）
+                </li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">5</span>
+            <h2>创建并部署</h2>
+            <ol>
+                <li>滚动到页面底部</li>
+                <li>确认选择的是 <span class="highlight">Free</span> 计划（免费）</li>
+                <li>点击绿色按钮 <span class="highlight">Create Static Site</span></li>
+                <li>等待部署完成（大约1-2分钟）</li>
+            </ol>
+        </div>
+        
+        <div class="success">
+            <h3>🎉 部署成功！</h3>
+            <p>部署完成后，您会看到一个网址，例如：</p>
+            <div class="code">https://cooking-assistant.onrender.com</div>
+            <p>这就是您的网站地址！可以分享给任何人！</p>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">6</span>
+            <h2>自定义域名（可选）</h2>
+            <ol>
+                <li>在部署完成的页面，找到 <span class="highlight">Settings</span></li>
+                <li>在 "Custom Domain" 部分，可以添加自己的域名</li>
+                <li>或者使用Render提供的免费域名：<code>*.onrender.com</code></li>
+            </ol>
+        </div>
+        
+        <div class="warning">
+            <h3>⚠️ 重要配置</h3>
+            <p><strong>Root Directory 必须填写：</strong> <code>website</code></p>
+            <p>因为您的HTML文件在website文件夹里，不是在仓库根目录。</p>
+            <p>如果不填写，Render会找不到index.html文件。</p>
+        </div>
+        
+        <div class="info">
+            <h3>💡 自动更新</h3>
+            <p>以后每次您更新GitHub仓库的代码，Render会自动重新部署！</p>
+            <p>完全不需要手动操作，非常方便！</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://dashboard.render.com" class="btn btn-primary" target="_blank">🚀 开始部署</a>
+        </div>
+        
+        <div class="step" style="margin-top: 40px;">
+            <h2>📋 配置总结</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 15px; text-align: left; border: 1px solid #ddd;">配置项</th>
+                    <th style="padding: 15px; text-align: left; border: 1px solid #ddd;">填写内容</th>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border: 1px solid #ddd;">Name</td>
+                    <td style="padding: 15px; border: 1px solid #ddd;"><code>cooking-assistant</code></td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border: 1px solid #ddd;">Branch</td>
+                    <td style="padding: 15px; border: 1px solid #ddd;"><code>main</code></td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border: 1px solid #ddd;">Root Directory</td>
+                    <td style="padding: 15px; border: 1px solid #ddd;"><code>website</code></td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border: 1px solid #ddd;">Build Command</td>
+                    <td style="padding: 15px; border: 1px solid #ddd;">（留空）</td>
+                </tr>
+                <tr>
+                    <td style="padding: 15px; border: 1px solid #ddd;">Publish Directory</td>
+                    <td style="padding: 15px; border: 1px solid #ddd;"><code>.</code></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

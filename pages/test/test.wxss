@@ -1,0 +1,76 @@
+/* pages/test/test.wxss */
+.container {
+  padding: 40rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.test-section {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  margin-bottom: 30rpx;
+}
+
+.tag {
+  padding: 15rpx 25rpx;
+  border-radius: 25rpx;
+  border: 2rpx solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.tag.selected {
+  border-color: transparent;
+  transform: scale(1.05);
+  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.2);
+}
+
+.tag-text {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.test-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.debug-info {
+  background: #f8f9fa;
+  padding: 15rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}

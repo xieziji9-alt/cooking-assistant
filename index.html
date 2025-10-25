@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>做菜小助手</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-brand">🍳 做菜小助手</div>
+            <div class="nav-menu">
+                <button class="nav-btn active" onclick="showPage('home')">首页</button>
+                <button class="nav-btn" onclick="showPage('ingredients')">食材推荐</button>
+                <button class="nav-btn" onclick="showPage('random')">随机推荐</button>
+                <button class="nav-btn" onclick="showPage('test')">测试功能</button>
+            </div>
+        </nav>
+
+        <!-- 首页 -->
+        <div id="home-page" class="page active">
+            <div class="hero-section">
+                <h1>🍳 做菜小助手</h1>
+                <p>根据现有食材和厨具，为您推荐最适合的菜谱</p>
+                <div class="feature-cards">
+                    <div class="feature-card" onclick="showPage('ingredients')">
+                        <div class="feature-icon">🥬</div>
+                        <h3>食材推荐</h3>
+                        <p>选择您的食材和厨具，获得精准推荐</p>
+                    </div>
+                    <div class="feature-card" onclick="showPage('random')">
+                        <div class="feature-icon">🎲</div>
+                        <h3>随机推荐</h3>
+                        <p>从65道精选菜谱中随机推荐</p>
+                    </div>
+                    <div class="feature-card" onclick="showPage('test')">
+                        <div class="feature-icon">🔧</div>
+                        <h3>测试功能</h3>
+                        <p>验证功能和数据完整性</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 食材推荐页面 -->
+        <div id="ingredients-page" class="page">
+            <div class="page-header">
+                <h2>🥬 食材推荐</h2>
+                <p>选择您现有的食材和厨具，我们为您推荐合适的菜谱</p>
+            </div>
+
+            <!-- 食材选择 -->
+            <div class="selection-section">
+                <h3>选择食材</h3>
+                <div class="category-tabs">
+                    <button class="tab-btn active" onclick="showIngredientCategory('蔬菜')">蔬菜</button>
+                    <button class="tab-btn" onclick="showIngredientCategory('肉类')">肉类</button>
+                    <button class="tab-btn" onclick="showIngredientCategory('主食')">主食</button>
+                    <button class="tab-btn" onclick="showIngredientCategory('调料')">调料</button>
+                </div>
+                <div id="ingredients-grid" class="items-grid"></div>
+                <div class="selected-items">
+                    <h4>已选食材：</h4>
+                    <div id="selected-ingredients" class="selected-tags"></div>
+                </div>
+            </div>
+
+            <!-- 厨具选择 -->
+            <div class="selection-section">
+                <h3>选择厨具</h3>
+                <div class="category-tabs">
+                    <button class="tab-btn active" onclick="showCookwareCategory('锅具')">锅具</button>
+                    <button class="tab-btn" onclick="showCookwareCategory('刀具')">刀具</button>
+                    <button class="tab-btn" onclick="showCookwareCategory('工具')">工具</button>
+                </div>
+                <div id="cookware-grid" class="items-grid"></div>
+                <div class="selected-items">
+                    <h4>已选厨具：</h4>
+                    <div id="selected-cookware" class="selected-tags"></div>
+                </div>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="clearSelection()">清空选择</button>
+                <button class="btn btn-primary" onclick="recommendRecipes()">推荐菜谱</button>
+            </div>
+
+            <!-- 推荐结果 -->
+            <div id="recommendation-results" class="results-section" style="display: none;">
+                <h3>推荐结果</h3>
+                <div id="recipes-list" class="recipes-grid"></div>
+            </div>
+        </div>
+
+        <!-- 随机推荐页面 -->
+        <div id="random-page" class="page">
+            <div class="page-header">
+                <h2>🎲 随机推荐</h2>
+                <p>从65道精选菜谱中随机推荐</p>
+            </div>
+            <div class="random-section">
+                <button class="btn btn-large btn-primary" onclick="getRandomRecipe()">🎲 随机推荐一道菜</button>
+                <div id="random-result" class="random-result"></div>
+            </div>
+        </div>
+
+        <!-- 测试功能页面 -->
+        <div id="test-page" class="page">
+            <div class="page-header">
+                <h2>🔧 测试功能</h2>
+                <p>验证各项功能和数据完整性</p>
+            </div>
+            <div class="test-buttons">
+                <button class="btn btn-test" onclick="testRecipeCount()">测试菜谱数量</button>
+                <button class="btn btn-test" onclick="testIngredientCoverage()">测试食材覆盖</button>
+                <button class="btn btn-test" onclick="testBilibiliLinks()">测试B站链接</button>
+                <button class="btn btn-test" onclick="testRecommendation()">测试推荐功能</button>
+                <button class="btn btn-test" onclick="validateAllData()">验证数据完整性</button>
+            </div>
+            <div id="test-results" class="test-results"></div>
+        </div>
+
+        <!-- 菜谱详情模态框 -->
+        <div id="recipe-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="recipe-detail" class="recipe-detail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

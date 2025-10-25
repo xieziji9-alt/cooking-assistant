@@ -1,0 +1,81 @@
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <view class="title">🍳 做菜小助手</view>
+    <view class="subtitle">根据现有食材和厨具，为您推荐最适合的菜谱</view>
+    <view class="stats">
+      <text class="stats-text">已收录 {{recipeCount}} 道精选菜谱</text>
+    </view>
+  </view>
+
+  <!-- 功能卡片 -->
+  <view class="feature-cards">
+    <view class="feature-card" bindtap="goToIngredients">
+      <view class="card-icon">🥬</view>
+      <view class="card-title">食材推荐</view>
+      <view class="card-desc">选择您的食材和厨具，获得精准推荐</view>
+      <view class="card-arrow">→</view>
+    </view>
+
+    <view class="feature-card" bindtap="goToRandom">
+      <view class="card-icon">🎲</view>
+      <view class="card-title">随机推荐</view>
+      <view class="card-desc">从100+道精选菜谱中随机推荐</view>
+      <view class="card-arrow">→</view>
+    </view>
+
+    <view class="feature-card" bindtap="goToTest">
+      <view class="card-icon">🔧</view>
+      <view class="card-title">测试功能</view>
+      <view class="card-desc">验证功能和数据完整性</view>
+      <view class="card-arrow">→</view>
+    </view>
+  </view>
+
+  <!-- 热门菜谱预览 -->
+  <view class="popular-section">
+    <view class="section-title">🔥 热门菜谱</view>
+    <scroll-view class="popular-scroll" scroll-x="true">
+      <view class="popular-item" wx:for="{{popularRecipes}}" wx:key="id" bindtap="goToRecipeDetail" data-id="{{item.id}}">
+        <view class="popular-name">{{item.name}}</view>
+        <view class="popular-info">
+          <text class="popular-time">⏰ {{item.cookingTime}}分钟</text>
+          <text class="popular-difficulty">⭐ {{item.difficulty}}</text>
+        </view>
+        <view class="popular-category">{{item.category}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="section-title">📊 菜谱统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['家常菜'] ? categoryStats['家常菜'] : 0}}</view>
+        <view class="stat-label">家常菜</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['川菜'] ? categoryStats['川菜'] : 0}}</view>
+        <view class="stat-label">川菜</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['素菜'] ? categoryStats['素菜'] : 0}}</view>
+        <view class="stat-label">素菜</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['汤菜'] ? categoryStats['汤菜'] : 0}}</view>
+        <view class="stat-label">汤菜</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速开始 -->
+  <view class="quick-start">
+    <view class="section-title">🚀 快速开始</view>
+    <view class="quick-buttons">
+      <button class="quick-btn primary" bindtap="goToIngredients">选择食材推荐</button>
+      <button class="quick-btn secondary" bindtap="getRandomRecipe">随机来一道</button>
+    </view>
+  </view>
+</view>

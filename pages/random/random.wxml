@@ -1,0 +1,129 @@
+<view class="container">
+  <!-- 头部区域 -->
+  <view class="header">
+    <text class="title">🎲 随机推荐</text>
+    <text class="subtitle">从{{recipeCount}}道精选菜谱中随机推荐</text>
+  </view>
+
+  <!-- 推荐数量选择 -->
+  <view class="count-section">
+    <view class="count-title">选择推荐数量：</view>
+    <view class="count-options">
+      <view class="count-option {{selectedCount === 1 ? 'active' : ''}}" 
+            bindtap="selectCount" data-count="1">
+        1道菜
+      </view>
+      <view class="count-option {{selectedCount === 3 ? 'active' : ''}}" 
+            bindtap="selectCount" data-count="3">
+        3道菜
+      </view>
+      <view class="count-option {{selectedCount === 5 ? 'active' : ''}}" 
+            bindtap="selectCount" data-count="5">
+        5道菜
+      </view>
+      <view class="count-option {{selectedCount === 10 ? 'active' : ''}}" 
+            bindtap="selectCount" data-count="10">
+        10道菜
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐按钮 -->
+  <view class="action-section">
+    <button class="recommend-btn" bindtap="getRandomRecipes" disabled="{{isLoading}}">
+      {{isLoading ? '推荐中...' : '🎲 开始随机推荐'}}
+    </button>
+  </view>
+
+  <!-- 推荐结果 -->
+  <view class="results-section" wx:if="{{randomRecipes.length > 0}}">
+    <view class="results-header">
+      <text class="results-title">🎉 为您随机推荐 {{randomRecipes.length}} 道菜谱：</text>
+      <button class="clear-btn" bindtap="clearResults">清空结果</button>
+    </view>
+    
+    <view class="recipe-list">
+      <view class="recipe-card" wx:for="{{randomRecipes}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="recipe-header">
+          <view class="recipe-number">{{index + 1}}</view>
+          <view class="recipe-name">{{item.name}}</view>
+          <view class="recipe-badges">
+            <text class="video-hint" bindtap="openBilibiliVideo" data-url="{{item.bilibiliUrl}}" catchtap="openBilibiliVideo">📺 教程</text>
+          </view>
+        </view>
+        
+        <view class="recipe-desc">{{item.description}}</view>
+        
+        <view class="recipe-info">
+          <text class="info-item">⭐ {{item.difficulty}}</text>
+          <text class="info-item">⏰ {{item.cookingTime}}分钟</text>
+          <text class="info-item">🍽️ {{item.category}}</text>
+        </view>
+
+        <view class="recipe-details">
+          <view class="detail-section">
+            <view class="detail-label">🥬 食材：</view>
+            <view class="detail-content">
+              <view wx:for="{{item.ingredients}}" wx:key="*this" wx:for-item="ingredient" class="ingredient-tag">
+                {{ingredient}}
+              </view>
+            </view>
+          </view>
+          <view class="detail-section">
+            <view class="detail-label">🍳 厨具：</view>
+            <view class="detail-content">
+              <view wx:for="{{item.cookware}}" wx:key="*this" wx:for-item="cookware" class="cookware-tag">
+                {{cookware}}
+              </view>
+            </view>
+          </view>
+          <view class="detail-section" wx:if="{{item.bilibiliUrl}}">
+            <view class="detail-label">📺 视频：</view>
+            <view class="detail-content">
+              <view class="video-link" bindtap="openBilibiliVideo" data-url="{{item.bilibiliUrl}}" catchtap="openBilibiliVideo">
+                点击观看B站教学视频
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 再次推荐按钮 -->
+    <view class="action-section">
+      <button class="recommend-btn secondary" bindtap="getRandomRecipes">
+        🔄 重新随机推荐
+      </button>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{showEmptyState}}">
+    <view class="empty-icon">🎲</view>
+    <view class="empty-title">点击上方按钮开始随机推荐</view>
+    <view class="empty-desc">我们会从{{recipeCount}}道精选菜谱中为您随机推荐</view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="stats-title">📊 菜谱库统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-number">{{recipeCount}}</view>
+        <view class="stat-label">总菜谱</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['家常菜'] ? categoryStats['家常菜'] : 0}}</view>
+        <view class="stat-label">家常菜</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['川菜'] ? categoryStats['川菜'] : 0}}</view>
+        <view class="stat-label">川菜</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-number">{{categoryStats['素菜'] ? categoryStats['素菜'] : 0}}</view>
+        <view class="stat-label">素菜</view>
+      </view>
+    </view>
+  </view>
+</view>

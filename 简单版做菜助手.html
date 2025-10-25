@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>做菜小助手</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .ingredient-btn {
+            background: #e9ecef;
+            border: 2px solid #dee2e6;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .ingredient-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .ingredient-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .recommend-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: transform 0.3s;
+        }
+        .recommend-btn:hover {
+            transform: translateY(-2px);
+        }
+        .results {
+            margin-top: 30px;
+        }
+        .recipe-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .recipe-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .recipe-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .recipe-info {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .ingredients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .ingredient-tag {
+            background: #e8f5e8;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            border: 1px solid #c8e6c9;
+        }
+        .video-link {
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .selected-ingredients {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍳 做菜小助手</h1>
+        
+        <div class="section">
+            <h2>选择您有的食材：</h2>
+            <div class="selected-ingredients">
+                <strong>已选食材：</strong>
+                <span id="selected-list">请选择食材</span>
+            </div>
+            <div class="ingredients-grid" id="ingredients-grid">
+                <!-- 食材按钮将在这里生成 -->
+            </div>
+            <button class="recommend-btn" onclick="recommendRecipes()">🎯 推荐菜谱</button>
+        </div>
+
+        <div class="section">
+            <h2>🎲 随机推荐：</h2>
+            <p>不知道做什么？让我们为您随机推荐菜谱！</p>
+            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <strong>📊 菜谱库统计：</strong>
+                <span id="recipe-count" style="color: #667eea; font-weight: bold;"></span>道精选菜谱
+                <br>
+                <small style="color: #666;">包含家常菜、川菜、素菜、汤菜、面食、凉菜等多种类型</small>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <label for="random-count" style="font-weight: bold; margin-right: 10px;">选择推荐数量：</label>
+                <select id="random-count" style="padding: 8px; border-radius: 5px; border: 2px solid #667eea; font-size: 16px;">
+                    <option value="1">1道菜</option>
+                    <option value="3">3道菜</option>
+                    <option value="5" selected>5道菜</option>
+                    <option value="10">10道菜</option>
+                    <option value="15">15道菜</option>
+                    <option value="20">20道菜</option>
+                </select>
+            </div>
+
+            <button class="recommend-btn" onclick="getRandomRecipes()">🎲 开始随机推荐</button>
+            <div id="random-result" style="margin-top: 20px;"></div>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <h2>🎉 推荐结果：</h2>
+            <div id="recipes-list"></div>
+        </div>
+    </div>
+
+    <script>
+        // 扩展的食材数据
+        const ingredients = [
+            '西红柿', '鸡蛋', '土豆', '青椒', '猪肉', '牛肉', '鸡肉',
+            '白菜', '菠菜', '豆芽', '蒜', '姜', '葱', '豆腐', '茄子',
+            '胡萝卜', '洋葱', '黄瓜', '韭菜', '鸭肉', '虾', '鱼肉',
+            '面条', '米饭', '香菇', '木耳', '冬瓜', '丝瓜', '排骨',
+            '花菜', '西兰花', '四季豆', '蒜苔', '芹菜', '空心菜',
+            '萝卜', '羊肉', '带鱼', '鲈鱼', '扇贝', '生蚝', '小龙虾',
+            '紫菜', '海带', '粉条', '粉丝', '豆角', '酸菜', '荷叶'
+        ];
+
+        // 简化的菜谱数据
+        const recipes = [
+            {
+                name: '西红柿炒蛋',
+                ingredients: ['西红柿', '鸡蛋', '葱', '盐', '糖', '食用油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1Py4y1S7EF'
+            },
+            {
+                name: '青椒肉丝',
+                ingredients: ['青椒', '猪肉', '蒜', '姜', '生抽', '料酒'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1x441127Hk'
+            },
+            {
+                name: '红烧茄子',
+                ingredients: ['茄子', '蒜', '姜', '生抽', '糖', '盐'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1CV411a7W8'
+            },
+            {
+                name: '清炒菠菜',
+                ingredients: ['菠菜', '蒜', '盐', '食用油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1hE411P7tV'
+            },
+            {
+                name: '菠菜炒鸡蛋',
+                ingredients: ['菠菜', '鸡蛋', '蒜', '盐', '食用油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1w24y1C7pK'
+            },
+            {
+                name: '凉拌豆芽',
+                ingredients: ['豆芽', '蒜', '醋', '生抽', '香油', '盐'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1up4y1X7h4'
+            },
+            {
+                name: '土豆丝',
+                ingredients: ['土豆', '青椒', '蒜', '醋', '盐'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1x441127Hk'
+            },
+            {
+                name: '清炒白菜',
+                ingredients: ['白菜', '蒜', '盐', '食用油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1CV411a7W8'
+            },
+            {
+                name: '宫保鸡丁',
+                ingredients: ['鸡肉', '花生米', '青椒', '蒜', '姜', '豆瓣酱'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1Xt411Z7z8'
+            },
+            {
+                name: '麻婆豆腐',
+                ingredients: ['豆腐', '猪肉', '豆瓣酱', '蒜', '姜', '葱'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1Rs411V7i9'
+            },
+            {
+                name: '红烧肉',
+                ingredients: ['猪肉', '冰糖', '生抽', '老抽', '料酒', '葱', '姜'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1Nw4m1d7Bq'
+            },
+            {
+                name: '可乐鸡翅',
+                ingredients: ['鸡肉', '可乐', '生抽', '老抽', '料酒', '姜', '葱'],
+                time: '30分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1CV411a7W8'
+            },
+            {
+                name: '糖醋里脊',
+                ingredients: ['猪肉', '鸡蛋', '淀粉', '面粉', '糖', '醋'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1CV411a7W8'
+            },
+            {
+                name: '醋烹豆芽',
+                ingredients: ['豆芽', '蒜', '干辣椒', '醋', '生抽', '盐'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1E94y1V7Pv'
+            },
+            {
+                name: '豆芽炒肉丝',
+                ingredients: ['豆芽', '猪肉', '蒜', '姜', '生抽', '料酒'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1Ti4y1r7pW'
+            },
+            {
+                name: '酸辣大白菜',
+                ingredients: ['白菜', '蒜', '干辣椒', '醋', '生抽', '盐'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1aJ411z7z9'
+            },
+            {
+                name: '香菇白菜汤',
+                ingredients: ['白菜', '香菇', '蒜', '盐', '胡椒粉', '香油'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1Cs411G7bw'
+            },
+            {
+                name: '菠菜面',
+                ingredients: ['菠菜', '面条', '盐', '葱', '蒜', '香油'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1Ks411w7Rq'
+            },
+            {
+                name: '菠菜豆腐汤',
+                ingredients: ['菠菜', '豆腐', '蒜', '盐', '胡椒粉', '香油'],
+                time: '12分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1E8R2Y3Ejz'
+            },
+            {
+                name: '豆芽拌粉条',
+                ingredients: ['豆芽', '粉条', '胡萝卜', '蒜', '醋', '香油'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV14s421T7Me'
+            },
+            {
+                name: '手撕包菜',
+                ingredients: ['白菜', '蒜', '干辣椒', '生抽', '醋', '盐'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1HD4y1A7ke'
+            },
+            {
+                name: '西红柿鸡蛋面',
+                ingredients: ['西红柿', '鸡蛋', '面条', '葱', '盐', '糖'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1Py4y1S7EF'
+            },
+            // 王刚系列菜谱
+            {
+                name: '回锅肉',
+                ingredients: ['猪肉', '青椒', '豆瓣酱', '蒜', '姜', '料酒'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1411127Hk'
+            },
+            {
+                name: '鱼香肉丝',
+                ingredients: ['猪肉', '胡萝卜', '木耳', '蒜', '姜', '豆瓣酱'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1422'
+            },
+            {
+                name: '水煮肉片',
+                ingredients: ['猪肉', '白菜', '豆瓣酱', '花椒', '辣椒', '蒜'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1521'
+            },
+            {
+                name: '毛血旺',
+                ingredients: ['猪血', '豆芽', '韭菜', '豆瓣酱', '花椒', '辣椒'],
+                time: '35分钟',
+                difficulty: '困难',
+                video: 'https://www.bilibili.com/video/BV1652'
+            },
+            {
+                name: '口水鸡',
+                ingredients: ['鸡肉', '花生米', '蒜', '姜', '辣椒油', '花椒'],
+                time: '40分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV133'
+            },
+            {
+                name: '辣子鸡',
+                ingredients: ['鸡肉', '干辣椒', '花椒', '蒜', '姜', '料酒'],
+                time: '35分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1531'
+            },
+            {
+                name: '小炒肉',
+                ingredients: ['猪肉', '青椒', '蒜', '姜', '豆豉', '生抽'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1958'
+            },
+            {
+                name: '木须肉',
+                ingredients: ['猪肉', '鸡蛋', '木耳', '黄瓜', '葱', '料酒'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1501'
+            },
+            {
+                name: '京酱肉丝',
+                ingredients: ['猪肉', '豆腐皮', '葱', '甜面酱', '料酒', '淀粉'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1429'
+            },
+            {
+                name: '把子肉',
+                ingredients: ['猪肉', '生抽', '老抽', '冰糖', '料酒', '八角'],
+                time: '60分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1850'
+            },
+            // 素菜系列
+            {
+                name: '地三鲜',
+                ingredients: ['茄子', '土豆', '青椒', '蒜', '生抽', '淀粉'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1311'
+            },
+            {
+                name: '干煸四季豆',
+                ingredients: ['四季豆', '猪肉末', '蒜', '姜', '豆豉', '辣椒'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1248'
+            },
+            {
+                name: '虎皮青椒',
+                ingredients: ['青椒', '蒜', '生抽', '醋', '糖', '盐'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1335'
+            },
+            {
+                name: '蒜蓉西兰花',
+                ingredients: ['西兰花', '蒜', '盐', '鸡精', '食用油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1531'
+            },
+            {
+                name: '干锅花菜',
+                ingredients: ['花菜', '猪肉', '蒜', '姜', '豆瓣酱', '辣椒'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1743'
+            },
+            {
+                name: '麻辣香锅',
+                ingredients: ['土豆', '豆腐', '豆芽', '蒜', '姜', '豆瓣酱'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1416'
+            },
+            {
+                name: '干锅土豆片',
+                ingredients: ['土豆', '青椒', '蒜', '姜', '豆瓣酱', '花椒'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1Xt411Z7z8'
+            },
+            {
+                name: '蚂蚁上树',
+                ingredients: ['粉条', '猪肉末', '蒜', '姜', '豆瓣酱', '葱'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1241'
+            },
+            {
+                name: '家常豆腐',
+                ingredients: ['豆腐', '青椒', '胡萝卜', '蒜', '豆瓣酱', '生抽'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1323'
+            },
+            {
+                name: '葱烧豆腐',
+                ingredients: ['豆腐', '葱', '蒜', '生抽', '老抽', '糖'],
+                time: '12分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1304'
+            },
+            // 海鲜系列
+            {
+                name: '油焖大虾',
+                ingredients: ['虾', '蒜', '姜', '葱', '料酒', '生抽'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1236'
+            },
+            {
+                name: '麻辣小龙虾',
+                ingredients: ['小龙虾', '蒜', '姜', '豆瓣酱', '花椒', '辣椒'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1438'
+            },
+            {
+                name: '清蒸鲈鱼',
+                ingredients: ['鲈鱼', '蒸鱼豉油', '葱', '姜', '料酒', '食用油'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1543'
+            },
+            {
+                name: '红烧带鱼',
+                ingredients: ['带鱼', '蒜', '姜', '生抽', '老抽', '糖'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1235'
+            },
+            {
+                name: '蒜蓉粉丝蒸扇贝',
+                ingredients: ['扇贝', '粉丝', '蒜', '蒸鱼豉油', '食用油'],
+                time: '15分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1431'
+            },
+            // 汤菜系列
+            {
+                name: '番茄蛋花汤',
+                ingredients: ['西红柿', '鸡蛋', '葱', '盐', '香油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1523'
+            },
+            {
+                name: '冬瓜排骨汤',
+                ingredients: ['冬瓜', '排骨', '姜', '盐', '胡椒粉'],
+                time: '60分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1324'
+            },
+            {
+                name: '紫菜蛋花汤',
+                ingredients: ['紫菜', '鸡蛋', '虾米', '盐', '香油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1425'
+            },
+            {
+                name: '丝瓜蛋汤',
+                ingredients: ['丝瓜', '鸡蛋', '蒜', '盐', '香油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1526'
+            },
+            {
+                name: '萝卜牛腩汤',
+                ingredients: ['萝卜', '牛腩', '姜', '八角', '桂皮', '盐'],
+                time: '90分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1627'
+            },
+            // 面食系列
+            {
+                name: '炸酱面',
+                ingredients: ['面条', '猪肉末', '甜面酱', '黄瓜', '豆芽', '葱'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1728'
+            },
+            {
+                name: '担担面',
+                ingredients: ['面条', '猪肉末', '芽菜', '花椒', '辣椒油', '芝麻酱'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1829'
+            },
+            {
+                name: '牛肉面',
+                ingredients: ['面条', '牛肉', '萝卜', '姜', '八角', '桂皮'],
+                time: '120分钟',
+                difficulty: '困难',
+                video: 'https://www.bilibili.com/video/BV1930'
+            },
+            {
+                name: '阳春面',
+                ingredients: ['面条', '葱', '猪油', '生抽', '盐', '香油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1031'
+            },
+            {
+                name: '蛋炒饭',
+                ingredients: ['米饭', '鸡蛋', '葱', '胡萝卜', '盐', '生抽'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1132'
+            },
+            {
+                name: '扬州炒饭',
+                ingredients: ['米饭', '鸡蛋', '虾仁', '火腿', '豌豆', '葱'],
+                time: '15分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1233'
+            },
+            // 蒸菜系列
+            {
+                name: '水蒸蛋',
+                ingredients: ['鸡蛋', '温水', '盐', '香油', '生抽'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1334'
+            },
+            {
+                name: '蒸蛋羹',
+                ingredients: ['鸡蛋', '牛奶', '盐', '糖', '香草精'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1435'
+            },
+            {
+                name: '粉蒸肉',
+                ingredients: ['猪肉', '蒸肉粉', '土豆', '生抽', '料酒', '盐'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1536'
+            },
+            {
+                name: '蒜蓉蒸茄子',
+                ingredients: ['茄子', '蒜', '生抽', '香油', '葱', '辣椒'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1637'
+            },
+            // 凉菜系列
+            {
+                name: '凉拌黄瓜',
+                ingredients: ['黄瓜', '蒜', '醋', '生抽', '香油', '盐'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1738'
+            },
+            {
+                name: '拍黄瓜',
+                ingredients: ['黄瓜', '蒜', '醋', '生抽', '香油', '辣椒油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1839'
+            },
+            {
+                name: '凉拌木耳',
+                ingredients: ['木耳', '胡萝卜', '蒜', '醋', '生抽', '香油'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1940'
+            },
+            {
+                name: '凉拌海带丝',
+                ingredients: ['海带丝', '胡萝卜', '蒜', '醋', '生抽', '香油'],
+                time: '12分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1041'
+            },
+            {
+                name: '蒜泥白肉',
+                ingredients: ['猪肉', '蒜', '生抽', '醋', '香油', '辣椒油'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1142'
+            },
+            // 特色菜系列
+            {
+                name: '东坡肉',
+                ingredients: ['猪肉', '生抽', '老抽', '料酒', '冰糖', '葱'],
+                time: '120分钟',
+                difficulty: '困难',
+                video: 'https://www.bilibili.com/video/BV1243'
+            },
+            {
+                name: '白切鸡',
+                ingredients: ['鸡肉', '姜', '葱', '料酒', '盐', '蒸鱼豉油'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1344'
+            },
+            {
+                name: '叫花鸡',
+                ingredients: ['鸡肉', '荷叶', '生抽', '老抽', '料酒', '盐'],
+                time: '180分钟',
+                difficulty: '困难',
+                video: 'https://www.bilibili.com/video/BV1445'
+            },
+            {
+                name: '盐水鸭',
+                ingredients: ['鸭肉', '盐', '花椒', '八角', '桂皮', '姜'],
+                time: '150分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1546'
+            },
+            {
+                name: '北京烤鸭',
+                ingredients: ['鸭肉', '甜面酱', '葱', '黄瓜', '饼皮'],
+                time: '240分钟',
+                difficulty: '困难',
+                video: 'https://www.bilibili.com/video/BV1647'
+            },
+            // 更多经典菜品
+            {
+                name: '红烧狮子头',
+                ingredients: ['猪肉', '鸡蛋', '淀粉', '葱', '姜', '生抽'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1748'
+            },
+            {
+                name: '白灼虾',
+                ingredients: ['虾', '姜', '葱', '料酒', '蒸鱼豉油', '食用油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1849'
+            },
+            {
+                name: '蒜蓉生蚝',
+                ingredients: ['生蚝', '蒜', '粉丝', '蒸鱼豉油', '食用油'],
+                time: '15分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1950'
+            },
+            {
+                name: '清蒸蛋羹',
+                ingredients: ['鸡蛋', '温水', '盐', '香油', '葱花'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1051'
+            },
+            {
+                name: '蒸蛋',
+                ingredients: ['鸡蛋', '温水', '盐', '生抽', '香油'],
+                time: '12分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1152'
+            },
+            {
+                name: '溏心鸡蛋',
+                ingredients: ['鸡蛋', '生抽', '老抽', '糖', '料酒'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1253'
+            },
+            {
+                name: '虾仁滑蛋',
+                ingredients: ['虾仁', '鸡蛋', '葱', '盐', '料酒', '淀粉'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1354'
+            },
+            {
+                name: '小葱煎蛋',
+                ingredients: ['鸡蛋', '小葱', '盐', '食用油'],
+                time: '5分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1455'
+            },
+            {
+                name: '鸡蛋饼',
+                ingredients: ['鸡蛋', '面粉', '葱', '盐', '水', '食用油'],
+                time: '10分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1556'
+            },
+            {
+                name: '煎土豆',
+                ingredients: ['土豆', '盐', '胡椒粉', '食用油'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1657'
+            },
+            // 继续添加更多菜品
+            {
+                name: '土豆泥',
+                ingredients: ['土豆', '牛奶', '黄油', '盐', '胡椒粉'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1758'
+            },
+            {
+                name: '香辣土豆',
+                ingredients: ['土豆', '辣椒', '花椒', '蒜', '生抽', '醋'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1859'
+            },
+            {
+                name: '土豆炖牛肉',
+                ingredients: ['土豆', '牛肉', '胡萝卜', '洋葱', '生抽', '老抽'],
+                time: '60分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1960'
+            },
+            {
+                name: '葱香牛肉',
+                ingredients: ['牛肉', '洋葱', '蒜', '生抽', '老抽', '料酒'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1061'
+            },
+            {
+                name: '青椒牛肉',
+                ingredients: ['牛肉', '青椒', '蒜', '姜', '生抽', '淀粉'],
+                time: '15分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1162'
+            },
+            {
+                name: '红烧牛肉',
+                ingredients: ['牛肉', '胡萝卜', '土豆', '生抽', '老抽', '冰糖'],
+                time: '90分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1263'
+            },
+            {
+                name: '酱牛肉',
+                ingredients: ['牛肉', '生抽', '老抽', '料酒', '八角', '桂皮'],
+                time: '120分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1364'
+            },
+            {
+                name: '萝卜烧牛肉',
+                ingredients: ['牛肉', '萝卜', '生抽', '老抽', '料酒', '冰糖'],
+                time: '75分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1465'
+            },
+            {
+                name: '青椒炒鸡丁',
+                ingredients: ['鸡肉', '青椒', '蒜', '姜', '生抽', '料酒'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1566'
+            },
+            {
+                name: '西红柿炖牛肉',
+                ingredients: ['牛肉', '西红柿', '洋葱', '胡萝卜', '生抽', '盐'],
+                time: '90分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1667'
+            },
+            // 最后一批菜品
+            {
+                name: '番茄土豆汤',
+                ingredients: ['西红柿', '土豆', '鸡蛋', '葱', '盐', '香油'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1768'
+            },
+            {
+                name: '西红柿鸡蛋汤',
+                ingredients: ['西红柿', '鸡蛋', '葱', '盐', '糖', '香油'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1869'
+            },
+            {
+                name: '盐煎肉',
+                ingredients: ['猪肉', '青椒', '蒜', '豆豉', '生抽', '盐'],
+                time: '20分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1970'
+            },
+            {
+                name: '红烧鸡翅',
+                ingredients: ['鸡翅', '生抽', '老抽', '料酒', '姜', '葱'],
+                time: '30分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1071'
+            },
+            {
+                name: '蒜蓉空心菜',
+                ingredients: ['空心菜', '蒜', '盐', '鸡精', '食用油'],
+                time: '5分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1172'
+            },
+            {
+                name: '韭菜炒蛋',
+                ingredients: ['韭菜', '鸡蛋', '盐', '食用油'],
+                time: '8分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1273'
+            },
+            {
+                name: '韭菜盒子',
+                ingredients: ['韭菜', '鸡蛋', '面粉', '盐', '食用油'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1374'
+            },
+            {
+                name: '蒜苔炒肉',
+                ingredients: ['蒜苔', '猪肉', '蒜', '生抽', '料酒', '盐'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1475'
+            },
+            {
+                name: '芹菜炒肉',
+                ingredients: ['芹菜', '猪肉', '蒜', '生抽', '料酒', '盐'],
+                time: '12分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1576'
+            },
+            {
+                name: '豆角焖面',
+                ingredients: ['豆角', '面条', '猪肉', '蒜', '生抽', '老抽'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1677'
+            },
+            {
+                name: '干煸豆角',
+                ingredients: ['豆角', '猪肉末', '蒜', '姜', '豆豉', '辣椒'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1778'
+            },
+            {
+                name: '蒜蓉茄子',
+                ingredients: ['茄子', '蒜', '生抽', '老抽', '糖', '盐'],
+                time: '15分钟',
+                difficulty: '简单',
+                video: 'https://www.bilibili.com/video/BV1879'
+            },
+            {
+                name: '鱼香茄子',
+                ingredients: ['茄子', '蒜', '姜', '豆瓣酱', '醋', '糖'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1980'
+            },
+            {
+                name: '糖醋排骨',
+                ingredients: ['排骨', '糖', '醋', '生抽', '老抽', '料酒'],
+                time: '45分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1081'
+            },
+            {
+                name: '红烧排骨',
+                ingredients: ['排骨', '生抽', '老抽', '冰糖', '料酒', '八角'],
+                time: '50分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1182'
+            },
+            {
+                name: '糖醋鱼',
+                ingredients: ['鱼', '糖', '醋', '生抽', '淀粉', '葱'],
+                time: '25分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1283'
+            },
+            {
+                name: '红烧鱼',
+                ingredients: ['鱼', '生抽', '老抽', '糖', '料酒', '葱'],
+                time: '20分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1384'
+            },
+            {
+                name: '水煮鱼',
+                ingredients: ['鱼', '豆芽', '白菜', '豆瓣酱', '花椒', '辣椒'],
+                time: '35分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1485'
+            },
+            {
+                name: '酸菜鱼',
+                ingredients: ['鱼', '酸菜', '豆腐', '蒜', '姜', '胡椒粉'],
+                time: '30分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1586'
+            },
+            {
+                name: '白萝卜炖羊肉',
+                ingredients: ['羊肉', '白萝卜', '姜', '八角', '桂皮', '盐'],
+                time: '90分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1687'
+            },
+            {
+                name: '孜然羊肉',
+                ingredients: ['羊肉', '洋葱', '孜然', '辣椒粉', '蒜', '盐'],
+                time: '15分钟',
+                difficulty: '中等',
+                video: 'https://www.bilibili.com/video/BV1788'
+            }
+        ];
+        ];
+
+        let selectedIngredients = [];
+
+        // 初始化页面
+        function init() {
+            const grid = document.getElementById('ingredients-grid');
+
+            ingredients.forEach(ingredient => {
+                const btn = document.createElement('div');
+                btn.className = 'ingredient-btn';
+                btn.textContent = ingredient;
+                btn.onclick = () => toggleIngredient(ingredient, btn);
+                grid.appendChild(btn);
+            });
+
+            // 显示菜谱数量
+            document.getElementById('recipe-count').textContent = recipes.length;
+        }
+
+        // 切换食材选择
+        function toggleIngredient(ingredient, btn) {
+            if (selectedIngredients.includes(ingredient)) {
+                selectedIngredients = selectedIngredients.filter(item => item !== ingredient);
+                btn.classList.remove('selected');
+            } else {
+                selectedIngredients.push(ingredient);
+                btn.classList.add('selected');
+            }
+            updateSelectedList();
+        }
+
+        // 更新已选食材显示
+        function updateSelectedList() {
+            const list = document.getElementById('selected-list');
+            if (selectedIngredients.length === 0) {
+                list.textContent = '请选择食材';
+            } else {
+                list.textContent = selectedIngredients.join('、');
+            }
+        }
+
+        // 推荐菜谱
+        function recommendRecipes() {
+            if (selectedIngredients.length === 0) {
+                alert('请至少选择一种食材！');
+                return;
+            }
+
+            const matchedRecipes = [];
+
+            recipes.forEach(recipe => {
+                let matchCount = 0;
+                selectedIngredients.forEach(selected => {
+                    if (recipe.ingredients.some(ingredient => 
+                        ingredient.includes(selected) || selected.includes(ingredient)
+                    )) {
+                        matchCount++;
+                    }
+                });
+
+                if (matchCount > 0) {
+                    matchedRecipes.push({
+                        ...recipe,
+                        matchCount: matchCount
+                    });
+                }
+            });
+
+            // 按匹配度排序
+            matchedRecipes.sort((a, b) => b.matchCount - a.matchCount);
+
+            displayResults(matchedRecipes);
+        }
+
+        // 显示结果
+        function displayResults(matchedRecipes) {
+            const resultsDiv = document.getElementById('results');
+            const recipesList = document.getElementById('recipes-list');
+
+            if (matchedRecipes.length === 0) {
+                recipesList.innerHTML = '<p>😔 没有找到匹配的菜谱，请尝试选择其他食材。</p>';
+            } else {
+                recipesList.innerHTML = '';
+                
+                matchedRecipes.forEach(recipe => {
+                    const card = document.createElement('div');
+                    card.className = 'recipe-card';
+                    card.innerHTML = `
+                        <div class="recipe-name">${recipe.name}</div>
+                        <div class="recipe-info">⏰ ${recipe.time} | ⭐ ${recipe.difficulty} | 🎯 匹配${recipe.matchCount}种食材</div>
+                        <div class="ingredients-list">
+                            ${recipe.ingredients.map(ingredient => 
+                                `<span class="ingredient-tag">${ingredient}</span>`
+                            ).join('')}
+                        </div>
+                        <a href="${recipe.video}" target="_blank" class="video-link">📺 观看教学视频</a>
+                    `;
+                    recipesList.appendChild(card);
+                });
+            }
+
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 随机推荐菜谱（支持多道菜）
+        function getRandomRecipes() {
+            const count = parseInt(document.getElementById('random-count').value);
+            const selectedRecipes = [];
+            const usedIndexes = new Set();
+
+            // 确保不重复选择
+            while (selectedRecipes.length < count && usedIndexes.size < recipes.length) {
+                const randomIndex = Math.floor(Math.random() * recipes.length);
+                if (!usedIndexes.has(randomIndex)) {
+                    usedIndexes.add(randomIndex);
+                    selectedRecipes.push(recipes[randomIndex]);
+                }
+            }
+
+            const resultDiv = document.getElementById('random-result');
+            let html = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #667eea;">🎉 为您随机推荐 ${selectedRecipes.length} 道菜谱</h3>
+                </div>
+            `;
+
+            selectedRecipes.forEach((recipe, index) => {
+                html += `
+                    <div class="recipe-card" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 2px solid #667eea; margin-bottom: 15px;">
+                        <div class="recipe-name">🎲 ${index + 1}. ${recipe.name}</div>
+                        <div class="recipe-info">⏰ ${recipe.time} | ⭐ ${recipe.difficulty}</div>
+                        <div class="ingredients-list">
+                            ${recipe.ingredients.map(ingredient =>
+                                `<span class="ingredient-tag">${ingredient}</span>`
+                            ).join('')}
+                        </div>
+                        <a href="${recipe.video}" target="_blank" class="video-link">📺 观看教学视频</a>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="recommend-btn" onclick="getRandomRecipes()" style="background: #28a745; padding: 12px 25px; font-size: 16px;">
+                        🔄 重新随机推荐
+                    </button>
+                    <button class="recommend-btn" onclick="clearRandomResults()" style="background: #6c757d; padding: 12px 25px; font-size: 16px; margin-left: 10px;">
+                        🗑️ 清空结果
+                    </button>
+                </div>
+            `;
+
+            resultDiv.innerHTML = html;
+
+            // 滚动到结果
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 清空随机推荐结果
+        function clearRandomResults() {
+            document.getElementById('random-result').innerHTML = '';
+        }
+
+        // 页面加载完成后初始化
+        window.onload = init;
+    </script>
+</body>
+</html>

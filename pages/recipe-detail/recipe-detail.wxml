@@ -1,0 +1,64 @@
+<!--pages/recipe-detail/recipe-detail.wxml-->
+<view class="container" wx:if="{{recipe}}">
+  <!-- 头部信息 -->
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">← 返回</view>
+    <text class="recipe-name">{{recipe.name}}</text>
+    <view class="recipe-info">
+      <text class="info-tag difficulty">{{recipe.difficulty}}</text>
+      <text class="info-tag time">{{recipe.cookingTime}}分钟</text>
+      <text class="info-tag category">{{recipe.category}}</text>
+    </view>
+  </view>
+
+  <!-- 菜谱描述 -->
+  <view class="description-section">
+    <text class="description">{{recipe.description}}</text>
+  </view>
+
+  <!-- 食材清单 -->
+  <view class="section">
+    <view class="section-title">
+      <text class="title-icon">🥬</text>
+      <text class="title-text">所需食材 ({{ingredientsList.length}}种)</text>
+    </view>
+    <view class="ingredients-grid" wx:if="{{ingredientsList.length > 0}}">
+      <view wx:for="{{ingredientsList}}" wx:key="id" class="ingredient-item">
+        <text class="ingredient-name">{{item.name}}</text>
+        <text class="ingredient-category">{{item.category}}</text>
+      </view>
+    </view>
+    <view wx:else class="empty-list">
+      <text class="empty-text">暂无食材信息</text>
+    </view>
+  </view>
+
+  <!-- 厨具清单 -->
+  <view class="section">
+    <view class="section-title">
+      <text class="title-icon">🍳</text>
+      <text class="title-text">所需厨具 ({{cookwareList.length}}种)</text>
+    </view>
+    <view class="cookware-grid" wx:if="{{cookwareList.length > 0}}">
+      <view wx:for="{{cookwareList}}" wx:key="id" class="cookware-item">
+        <text class="cookware-name">{{item.name}}</text>
+        <text class="cookware-type">{{item.type}}</text>
+      </view>
+    </view>
+    <view wx:else class="empty-list">
+      <text class="empty-text">暂无厨具信息</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section" wx:if="{{recipe.bilibiliUrl}}">
+    <button class="video-btn" bindtap="openBilibiliVideo">
+      📺 观看教学视频
+    </button>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading" wx:else>
+  <text>加载中...</text>
+</view>

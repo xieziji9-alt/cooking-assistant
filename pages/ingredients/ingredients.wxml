@@ -1,0 +1,179 @@
+<view class="container">
+  <!-- 头部说明 -->
+  <view class="header">
+    <text class="title">🥬 食材推荐</text>
+    <text class="subtitle">选择您现有的食材和厨具，我们为您推荐合适的菜谱</text>
+  </view>
+
+  <!-- 食材选择区域 -->
+  <view class="selection-section">
+    <view class="section-header">
+      <text class="section-title">选择食材</text>
+      <text class="section-count">(已选{{selectedIngredients.length}}种)</text>
+    </view>
+    
+    <!-- 食材分类标签 -->
+    <view class="category-tabs">
+      <view class="tab-item {{currentIngredientCategory === '蔬菜' ? 'active' : ''}}" 
+            bindtap="switchIngredientCategory" data-category="蔬菜">
+        蔬菜
+      </view>
+      <view class="tab-item {{currentIngredientCategory === '肉类' ? 'active' : ''}}" 
+            bindtap="switchIngredientCategory" data-category="肉类">
+        肉类
+      </view>
+      <view class="tab-item {{currentIngredientCategory === '主食' ? 'active' : ''}}" 
+            bindtap="switchIngredientCategory" data-category="主食">
+        主食
+      </view>
+      <view class="tab-item {{currentIngredientCategory === '调料' ? 'active' : ''}}" 
+            bindtap="switchIngredientCategory" data-category="调料">
+        调料
+      </view>
+      <view class="tab-item {{currentIngredientCategory === '其他' ? 'active' : ''}}" 
+            bindtap="switchIngredientCategory" data-category="其他">
+        其他
+      </view>
+    </view>
+
+    <!-- 食材网格 -->
+    <view class="items-grid">
+      <view class="item {{selectedIngredients.includes(item.name) ? 'selected' : ''}}"
+            wx:for="{{currentIngredients}}" wx:key="name"
+            bindtap="toggleIngredient" data-name="{{item.name}}">
+        {{item.name}}
+      </view>
+    </view>
+
+    <!-- 已选食材显示 -->
+    <view class="selected-items" wx:if="{{selectedIngredients.length > 0}}">
+      <text class="selected-title">已选食材：</text>
+      <view class="selected-tags">
+        <view class="selected-tag" wx:for="{{selectedIngredients}}" wx:key="*this">
+          {{item}}
+          <text class="remove-btn" bindtap="removeIngredient" data-name="{{item}}">×</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 厨具选择区域 -->
+  <view class="selection-section">
+    <view class="section-header">
+      <text class="section-title">选择厨具</text>
+      <text class="section-count">(已选{{selectedCookware.length}}种)</text>
+    </view>
+    
+    <!-- 厨具分类标签 -->
+    <view class="category-tabs">
+      <view class="tab-item {{currentCookwareCategory === '锅具' ? 'active' : ''}}" 
+            bindtap="switchCookwareCategory" data-category="锅具">
+        锅具
+      </view>
+      <view class="tab-item {{currentCookwareCategory === '刀具' ? 'active' : ''}}" 
+            bindtap="switchCookwareCategory" data-category="刀具">
+        刀具
+      </view>
+      <view class="tab-item {{currentCookwareCategory === '工具' ? 'active' : ''}}" 
+            bindtap="switchCookwareCategory" data-category="工具">
+        工具
+      </view>
+    </view>
+
+    <!-- 厨具网格 -->
+    <view class="items-grid">
+      <view class="item {{selectedCookware.includes(item.name) ? 'selected' : ''}}"
+            wx:for="{{currentCookware}}" wx:key="name"
+            bindtap="toggleCookware" data-name="{{item.name}}">
+        {{item.name}}
+      </view>
+    </view>
+
+    <!-- 已选厨具显示 -->
+    <view class="selected-items" wx:if="{{selectedCookware.length > 0}}">
+      <text class="selected-title">已选厨具：</text>
+      <view class="selected-tags">
+        <view class="selected-tag" wx:for="{{selectedCookware}}" wx:key="*this">
+          {{item}}
+          <text class="remove-btn" bindtap="removeCookware" data-name="{{item}}">×</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn secondary" bindtap="clearAll">清空选择</button>
+    <button class="action-btn primary" bindtap="recommendRecipes" disabled="{{isLoading}}">
+      {{isLoading ? '推荐中...' : '推荐菜谱'}}
+    </button>
+  </view>
+
+  <!-- 推荐结果 -->
+  <view class="results-section" wx:if="{{recommendedRecipes.length > 0}}">
+    <view class="results-header">
+      <text class="results-title">🎉 为您推荐以下菜谱 (共{{recommendedRecipes.length}}道)：</text>
+    </view>
+    
+    <view class="recipe-list">
+      <view class="recipe-card" wx:for="{{recommendedRecipes}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="recipe-header">
+          <view class="recipe-name">{{item.name}}</view>
+          <view class="recipe-badges">
+            <text class="match-badge" wx:if="{{item.matchScore > 0}}">🥬 食材匹配{{item.matchScore}}个</text>
+            <text class="cookware-badge" wx:if="{{item.cookwareScore > 0}}">🍳 厨具匹配{{item.cookwareScore}}个</text>
+            <text class="video-hint" bindtap="openBilibiliVideo" data-url="{{item.bilibiliUrl}}" catchtap="openBilibiliVideo">📺 教程</text>
+          </view>
+        </view>
+        
+        <view class="recipe-desc">{{item.description}}</view>
+        
+        <view class="recipe-info">
+          <text class="info-item">⭐ {{item.difficulty}}</text>
+          <text class="info-item">⏰ {{item.cookingTime}}分钟</text>
+          <text class="info-item">🍽️ {{item.category}}</text>
+        </view>
+
+        <view class="recipe-details">
+          <view class="detail-section">
+            <view class="detail-label">🥬 食材：</view>
+            <view class="detail-content">
+              <view wx:for="{{item.ingredients}}" wx:key="*this" class="ingredient-tag">
+                {{item}}
+              </view>
+            </view>
+          </view>
+          <view class="detail-section">
+            <view class="detail-label">🍳 厨具：</view>
+            <view class="detail-content">
+              <view wx:for="{{item.cookware}}" wx:key="*this" class="cookware-tag">
+                {{item}}
+              </view>
+            </view>
+          </view>
+          <view class="detail-section" wx:if="{{item.bilibiliUrl}}">
+            <view class="detail-label">📺 视频：</view>
+            <view class="detail-content">
+              <view class="video-link" bindtap="openBilibiliVideo" data-url="{{item.bilibiliUrl}}" catchtap="openBilibiliVideo">
+                点击观看B站教学视频
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{showEmptyState}}">
+    <view class="empty-icon">😔</view>
+    <view class="empty-title">没有找到匹配的菜谱</view>
+    <view class="empty-desc">建议您：</view>
+    <view class="empty-tips">
+      <text>• 尝试选择更常见的食材</text>
+      <text>• 减少厨具限制</text>
+      <text>• 查看随机推荐获取灵感</text>
+    </view>
+    <button class="empty-btn" bindtap="goToRandom">随机推荐</button>
+  </view>
+</view>

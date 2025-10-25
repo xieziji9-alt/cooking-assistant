@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 部署指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .info-box {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .info-box a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .step {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .step h2 {
+            color: #333;
+            margin-bottom: 20px;
+            display: inline-block;
+            margin-left: 15px;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+        
+        .step ol {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .step li {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .step code {
+            background: #f5f5f5;
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #e83e8c;
+            font-family: "Consolas", monospace;
+        }
+        
+        .file-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .file-list div {
+            padding: 8px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #27ae60;
+        }
+        
+        .file-list div::before {
+            content: "✅ ";
+            color: #27ae60;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .success-box h2 {
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        
+        .success-box .url {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.2em;
+            word-break: break-all;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .warning h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 GitHub Pages 部署指南</h1>
+        
+        <div class="info-box">
+            <h3>📝 您的信息</h3>
+            <p><strong>GitHub用户名：</strong> xieziji9-alt</p>
+            <p><strong>仓库地址：</strong> <a href="https://github.com/xieziji9-alt/cooking-assistant" target="_blank">https://github.com/xieziji9-alt/cooking-assistant</a></p>
+            <p><strong>网站地址（部署后）：</strong> <a href="https://xieziji9-alt.github.io/cooking-assistant/" target="_blank">https://xieziji9-alt.github.io/cooking-assistant/</a></p>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <h2>上传文件到GitHub</h2>
+            <ol>
+                <li>打开您的仓库页面（点击上面的仓库地址链接）</li>
+                <li>在仓库页面，找到并点击蓝色链接 <code>uploading an existing file</code><br>
+                    （或者点击 <code>Add file</code> → <code>Upload files</code>）</li>
+                <li>从文件夹 <code>d:\code\idea\ideaPrograms\zuocai\website\</code> 中选择以下5个文件：
+                    <div class="file-list">
+                        <div>index.html</div>
+                        <div>styles.css</div>
+                        <div>script.js</div>
+                        <div>app.js</div>
+                        <div>autoRecipes.js</div>
+                    </div>
+                </li>
+                <li>拖拽这5个文件到GitHub页面的上传区域</li>
+                <li>在页面底部的 <code>Commit message</code> 输入框填写：<br>
+                    <code>Add cooking assistant website</code></li>
+                <li>点击绿色按钮 <code>Commit changes</code></li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <h2>启用GitHub Pages</h2>
+            <ol>
+                <li>在仓库页面顶部，点击 <code>Settings</code> 标签</li>
+                <li>在左侧菜单中，找到并点击 <code>Pages</code>（在 "Code and automation" 部分）</li>
+                <li>在 "Build and deployment" 部分：
+                    <ul>
+                        <li><strong>Source:</strong> 选择 <code>Deploy from a branch</code></li>
+                        <li><strong>Branch:</strong> 第一个下拉框选择 <code>main</code>，第二个选择 <code>/ (root)</code></li>
+                    </ul>
+                </li>
+                <li>点击 <code>Save</code> 按钮</li>
+                <li>等待1-2分钟让GitHub部署您的网站</li>
+            </ol>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <h2>访问您的网站</h2>
+            <ol>
+                <li>等待1-2分钟后，刷新Pages设置页面（按F5）</li>
+                <li>页面顶部会显示绿色提示框：<br>
+                    <code>Your site is live at https://xieziji9-alt.github.io/cooking-assistant/</code></li>
+                <li>点击这个链接，或在新标签页打开</li>
+                <li>您的做菜小助手网站就上线了！🎉</li>
+            </ol>
+        </div>
+        
+        <div class="warning">
+            <h4>⚠️ 注意事项</h4>
+            <ul>
+                <li>确保仓库是 <strong>Public</strong>（公开）状态</li>
+                <li>文件名必须小写（<code>index.html</code> 不是 <code>Index.html</code>）</li>
+                <li>首次部署需要等待1-2分钟</li>
+                <li>如果网站显示404，等待3-5分钟后清除浏览器缓存（Ctrl+F5）</li>
+            </ul>
+        </div>
+        
+        <div class="success-box">
+            <h2>🎉 完成后您将获得</h2>
+            <div class="url">
+                https://xieziji9-alt.github.io/cooking-assistant/
+            </div>
+            <p>这个网址可以：</p>
+            <p>✅ 分享给任何人 ✅ 永久免费 ✅ 全球访问 ✅ 自动HTTPS</p>
+            <a href="https://github.com/xieziji9-alt/cooking-assistant" class="btn" target="_blank">打开GitHub仓库</a>
+            <a href="https://xieziji9-alt.github.io/cooking-assistant/" class="btn" target="_blank">访问网站</a>
+        </div>
+    </div>
+</body>
+</html>
+

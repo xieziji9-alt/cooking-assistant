@@ -1,0 +1,64 @@
+/* 容器与头部 */
+.container { background: #f6f7fb; min-height: 100vh; }
+.header { padding: 40rpx 30rpx 10rpx; }
+.title { font-size: 36rpx; font-weight: 700; color: #333; }
+.subtitle { margin-top: 10rpx; color: #6b7280; font-size: 26rpx; }
+
+/* 选择区块 */
+.selection-section { margin: 20rpx; background: #fff; border-radius: 20rpx; box-shadow: 0 8rpx 20rpx rgba(0,0,0,.06); padding: 24rpx; }
+.section-header { display: flex; align-items: baseline; gap: 10rpx; margin-bottom: 16rpx; }
+.section-title { font-size: 30rpx; font-weight: 600; color: #111827; }
+.section-count { color: #9ca3af; font-size: 24rpx; }
+
+.category-tabs { display: flex; gap: 14rpx; flex-wrap: wrap; margin-bottom: 16rpx; }
+.tab-item { padding: 10rpx 22rpx; border-radius: 9999rpx; background: #eef2ff; color: #374151; border: 2rpx solid #c7d2fe; }
+.tab-item.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+
+.items-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14rpx; }
+.item { text-align: center; padding: 18rpx 10rpx; background: #f9fafb; border: 2rpx solid #e5e7eb; border-radius: 12rpx; color: #374151; }
+.item.selected { background: #e0e7ff; border-color: #6366f1; color: #111827; font-weight: 600; }
+
+/* 已选标签 */
+.selected-items { margin-top: 16rpx; }
+.selected-title { color: #6b7280; font-size: 26rpx; }
+.selected-tags { display: flex; flex-wrap: wrap; gap: 10rpx; margin-top: 10rpx; }
+.selected-tag { background: #6366f1; color: #fff; padding: 8rpx 16rpx; border-radius: 9999rpx; font-size: 24rpx; }
+.remove-btn { margin-left: 10rpx; color: #e5e7eb; }
+
+/* 按钮 */
+.action-buttons { display: flex; gap: 16rpx; padding: 20rpx; }
+.action-btn { flex: 1; padding: 22rpx; border-radius: 16rpx; border: none; font-size: 28rpx; font-weight: 700; }
+.action-btn.primary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
+.action-btn.secondary { background: #e5e7eb; color: #374151; }
+
+/* 推荐结果卡片 */
+.results-section { margin: 20rpx; }
+.results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14rpx; }
+.results-title { font-size: 28rpx; color: #111827; }
+.recipe-list { display: grid; grid-template-columns: 1fr; gap: 16rpx; }
+.recipe-card { background: #fff; border-radius: 16rpx; border: 2rpx solid #e5e7eb; padding: 20rpx; box-shadow: 0 8rpx 20rpx rgba(0,0,0,.05); }
+.recipe-card:active { transform: scale(.98); }
+.recipe-header { display: flex; align-items: center; justify-content: space-between; }
+.recipe-name { font-size: 30rpx; font-weight: 700; color: #111827; }
+.recipe-badges { display: flex; gap: 8rpx; }
+.match-badge, .cookware-badge, .video-hint { background: #eef2ff; color: #4f46e5; border: 2rpx solid #c7d2fe; padding: 6rpx 12rpx; border-radius: 9999rpx; font-size: 22rpx; }
+.cookware-badge { background: #e8f5e8; color: #2e7d32; border-color: #c8e6c9; }
+.video-hint { background: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+.recipe-desc { margin: 10rpx 0; color: #6b7280; }
+.recipe-info { display: flex; gap: 10rpx; flex-wrap: wrap; }
+.info-item { background: #f3f4f6; border-radius: 10rpx; padding: 6rpx 10rpx; font-size: 22rpx; color: #374151; }
+.recipe-details { margin-top: 12rpx; background: #f9fafb; border: 2rpx solid #e5e7eb; border-radius: 12rpx; padding: 12rpx; }
+.detail-section { margin-bottom: 10rpx; }
+.detail-label { font-weight: 700; color: #374151; margin-bottom: 6rpx; }
+.detail-content { display: flex; flex-wrap: wrap; gap: 8rpx; }
+.ingredient-tag { background: #e8f5e8; border: 2rpx solid #c8e6c9; color: #2e7d32; padding: 6rpx 10rpx; border-radius: 9999rpx; font-size: 22rpx; }
+.cookware-tag { background: #fff3e0; border: 2rpx solid #ffcc02; color: #8a6d3b; padding: 6rpx 10rpx; border-radius: 9999rpx; font-size: 22rpx; }
+.video-link { color: #2563eb; text-decoration: underline; }
+
+/* 空状态 */
+.empty-state { padding: 60rpx 30rpx; text-align: center; color: #6b7280; }
+.empty-icon { font-size: 72rpx; margin-bottom: 10rpx; }
+.empty-title { font-size: 30rpx; font-weight: 700; color: #374151; margin-bottom: 8rpx; }
+.empty-desc { margin-bottom: 6rpx; }
+.empty-tips text { display: block; }
+.empty-btn { margin-top: 14rpx; background: #667eea; color: #fff; border: none; padding: 18rpx 26rpx; border-radius: 12rpx; }

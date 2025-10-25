@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍳 做菜小助手 - 智能菜谱推荐系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">🍳 做菜小助手</div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active" data-page="home">首页</a>
+                <a href="#ingredients" class="nav-link" data-page="ingredients">食材推荐</a>
+                <a href="#random" class="nav-link" data-page="random">随机推荐</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="main-container">
+        <!-- 首页 -->
+        <div id="page-home" class="page active">
+            <div class="container">
+                <!-- 头部区域 -->
+                <div class="header">
+                    <div class="title">🍳 做菜小助手</div>
+                    <div class="subtitle">根据现有食材和厨具，为您推荐最适合的菜谱</div>
+                    <div class="stats">
+                        <span class="stats-text">已收录 <span id="home-recipe-count">0</span> 道精选菜谱</span>
+                    </div>
+                </div>
+
+                <!-- 功能卡片 -->
+                <div class="feature-cards">
+                    <div class="feature-card" onclick="navigateTo('ingredients')">
+                        <div class="card-icon">🥬</div>
+                        <div class="card-title">食材推荐</div>
+                        <div class="card-desc">选择您的食材和厨具，获得精准推荐</div>
+                        <div class="card-arrow">→</div>
+                    </div>
+
+                    <div class="feature-card" onclick="navigateTo('random')">
+                        <div class="card-icon">🎲</div>
+                        <div class="card-title">随机推荐</div>
+                        <div class="card-desc">从300+道精选菜谱中随机推荐</div>
+                        <div class="card-arrow">→</div>
+                    </div>
+                </div>
+
+                <!-- 热门菜谱预览 -->
+                <div class="popular-section">
+                    <div class="section-title">🔥 热门菜谱</div>
+                    <div class="popular-scroll" id="popular-recipes">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-section">
+                    <div class="section-title">📊 菜谱统计</div>
+                    <div class="stats-grid" id="category-stats">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 快速开始 -->
+                <div class="quick-start">
+                    <div class="section-title">🚀 快速开始</div>
+                    <div class="quick-buttons">
+                        <button class="quick-btn primary" onclick="navigateTo('ingredients')">选择食材推荐</button>
+                        <button class="quick-btn secondary" onclick="getRandomRecipeQuick()">随机来一道</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 食材推荐页面 -->
+        <div id="page-ingredients" class="page">
+            <div class="container">
+                <!-- 头部说明 -->
+                <div class="header">
+                    <div class="title">🥬 食材推荐</div>
+                    <div class="subtitle">选择您现有的食材和厨具，我们为您推荐合适的菜谱</div>
+                </div>
+
+                <!-- 食材选择区域 -->
+                <div class="selection-section">
+                    <div class="section-header">
+                        <span class="section-title">选择食材</span>
+                        <span class="section-count">(已选<span id="selected-ingredients-count">0</span>种)</span>
+                    </div>
+                    
+                    <!-- 食材分类标签 -->
+                    <div class="category-tabs" id="ingredient-tabs">
+                        <div class="tab-item active" data-category="蔬菜">蔬菜</div>
+                        <div class="tab-item" data-category="肉类">肉类</div>
+                        <div class="tab-item" data-category="主食">主食</div>
+                        <div class="tab-item" data-category="调料">调料</div>
+                        <div class="tab-item" data-category="其他">其他</div>
+                    </div>
+
+                    <!-- 食材网格 -->
+                    <div class="items-grid" id="ingredients-grid">
+                        <!-- 动态生成 -->
+                    </div>
+
+                    <!-- 已选食材显示 -->
+                    <div class="selected-items" id="selected-ingredients-display" style="display: none;">
+                        <span class="selected-title">已选食材：</span>
+                        <div class="selected-tags" id="selected-ingredients-tags">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 厨具选择区域 -->
+                <div class="selection-section">
+                    <div class="section-header">
+                        <span class="section-title">选择厨具</span>
+                        <span class="section-count">(已选<span id="selected-cookware-count">0</span>种)</span>
+                    </div>
+                    
+                    <!-- 厨具分类标签 -->
+                    <div class="category-tabs" id="cookware-tabs">
+                        <div class="tab-item active" data-category="锅具">锅具</div>
+                        <div class="tab-item" data-category="刀具">刀具</div>
+                        <div class="tab-item" data-category="工具">工具</div>
+                    </div>
+
+                    <!-- 厨具网格 -->
+                    <div class="items-grid" id="cookware-grid">
+                        <!-- 动态生成 -->
+                    </div>
+
+                    <!-- 已选厨具显示 -->
+                    <div class="selected-items" id="selected-cookware-display" style="display: none;">
+                        <span class="selected-title">已选厨具：</span>
+                        <div class="selected-tags" id="selected-cookware-tags">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="action-buttons">
+                    <button class="action-btn secondary" onclick="clearAllSelections()">清空选择</button>
+                    <button class="action-btn primary" onclick="recommendRecipes()" id="recommend-btn">推荐菜谱</button>
+                </div>
+
+                <!-- 推荐结果 -->
+                <div class="results-section" id="ingredients-results" style="display: none;">
+                    <div class="results-header">
+                        <span class="results-title">🎉 为您推荐以下菜谱 (共<span id="results-count">0</span>道)：</span>
+                    </div>
+                    
+                    <div class="recipe-list" id="recommended-recipes-list">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+
+                <!-- 空状态 -->
+                <div class="empty-state" id="ingredients-empty" style="display: none;">
+                    <div class="empty-icon">😔</div>
+                    <div class="empty-title">没有找到匹配的菜谱</div>
+                    <div class="empty-desc">建议您：</div>
+                    <div class="empty-tips">
+                        <div>• 尝试选择更常见的食材</div>
+                        <div>• 减少厨具限制</div>
+                        <div>• 查看随机推荐获取灵感</div>
+                    </div>
+                    <button class="empty-btn" onclick="navigateTo('random')">随机推荐</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 随机推荐页面 -->
+        <div id="page-random" class="page">
+            <div class="container">
+                <!-- 头部区域 -->
+                <div class="header">
+                    <div class="title">🎲 随机推荐</div>
+                    <div class="subtitle">从<span id="random-recipe-count">0</span>道精选菜谱中随机推荐</div>
+                </div>
+
+                <!-- 推荐数量选择 -->
+                <div class="count-section">
+                    <div class="count-title">选择推荐数量：</div>
+                    <div class="count-options">
+                        <div class="count-option" data-count="1">1道菜</div>
+                        <div class="count-option" data-count="3">3道菜</div>
+                        <div class="count-option active" data-count="5">5道菜</div>
+                        <div class="count-option" data-count="10">10道菜</div>
+                    </div>
+                </div>
+
+                <!-- 推荐按钮 -->
+                <div class="action-section">
+                    <button class="recommend-btn" onclick="getRandomRecipes()" id="random-recommend-btn">🎲 开始随机推荐</button>
+                </div>
+
+                <!-- 推荐结果 -->
+                <div class="results-section" id="random-results" style="display: none;">
+                    <div class="results-header">
+                        <span class="results-title">🎉 为您随机推荐 <span id="random-results-count">0</span> 道菜谱：</span>
+                        <button class="clear-btn" onclick="clearRandomResults()">清空结果</button>
+                    </div>
+                    
+                    <div class="recipe-list" id="random-recipes-list">
+                        <!-- 动态生成 -->
+                    </div>
+
+                    <!-- 再次推荐按钮 -->
+                    <div class="action-section">
+                        <button class="recommend-btn secondary" onclick="getRandomRecipes()">🔄 重新随机推荐</button>
+                    </div>
+                </div>
+
+                <!-- 空状态 -->
+                <div class="empty-state" id="random-empty">
+                    <div class="empty-icon">🎲</div>
+                    <div class="empty-title">点击上方按钮开始随机推荐</div>
+                    <div class="empty-desc">我们会从<span id="random-empty-count">0</span>道精选菜谱中为您随机推荐</div>
+                </div>
+
+                <!-- 统计信息 -->
+                <div class="stats-section">
+                    <div class="stats-title">📊 菜谱库统计</div>
+                    <div class="stats-grid" id="random-category-stats">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 菜谱详情模态框 -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeRecipeModal()">&times;</span>
+            <div id="recipe-detail-content">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="autoRecipes.js"></script>
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
