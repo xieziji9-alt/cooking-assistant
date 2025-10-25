@@ -120,7 +120,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "中等",
         "cookingTime": "25",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1ys411u7Z4",
         "category": "川菜"
     },
     {
@@ -130,7 +130,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "中等",
         "cookingTime": "40",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1dq4y1Q718",
         "category": "家常菜"
     },
     {
@@ -140,7 +140,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "10",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1s4411C7zH",
         "category": "家常菜"
     },
     {
@@ -150,7 +150,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "10",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1Zx411q7JC",
         "category": "主食"
     },
     {
@@ -160,7 +160,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "20",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1Yx411q7Qv",
         "category": "素菜"
     },
     {
@@ -170,7 +170,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "15",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1nW411A7SY",
         "category": "素菜"
     },
     {
@@ -180,7 +180,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "10",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV12g4y1X7tw",
         "category": "素菜"
     },
     {
@@ -200,7 +200,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|菜刀|砧板|锅铲",
         "difficulty": "简单",
         "cookingTime": "15",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1kE411i7r1",
         "category": "家常菜"
     },
     {
@@ -210,7 +210,7 @@ CORE_RECIPES = [
         "cookware": "炒锅|砂锅|菜刀|砧板",
         "difficulty": "中等",
         "cookingTime": "120",
-        "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7Hk",
+        "bilibiliUrl": "https://www.bilibili.com/video/BV1CebaznE19",
         "category": "荤菜"
     },
 ]
