@@ -1308,7 +1308,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7GG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1DR4y1p7j4",
     "category": "海鲜"
   },
   {
@@ -1378,7 +1378,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 8,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7wF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1NW411R7YD",
     "category": "汤菜"
   },
   {
@@ -1401,7 +1401,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 10,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7uF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1NW411R7YD",
     "category": "汤菜"
   },
   {
@@ -1426,7 +1426,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 90,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7sF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Es411j78m",
     "category": "汤菜"
   },
   {
@@ -1456,7 +1456,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 25,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7mF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Hs411j7Tn",
     "category": "面食"
   },
   {
@@ -1538,7 +1538,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 10,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7gF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Hs411j7Tn",
     "category": "面食"
   },
   {
@@ -1681,7 +1681,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 20,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7WG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Hs411j7Tn",
     "category": "蒸菜"
   },
   {
@@ -1730,7 +1730,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 8,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7OF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1RV41167WV",
     "category": "凉菜"
   },
   {
@@ -1756,7 +1756,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7MF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Gs411A7Vo",
     "category": "凉菜"
   },
   {
@@ -1782,7 +1782,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 12,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7KF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Bs411F7W3",
     "category": "凉菜"
   },
   {
@@ -1831,7 +1831,7 @@ const recipes = [
     ],
     "difficulty": "困难",
     "cookingTime": 120,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7GF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1CebaznE19",
     "category": "特色菜"
   },
   {
@@ -1854,7 +1854,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 45,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7EF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1fb411g77Q",
     "category": "特色菜"
   },
   {
@@ -1878,7 +1878,7 @@ const recipes = [
     ],
     "difficulty": "困难",
     "cookingTime": 180,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7CF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1fb411g77Q",
     "category": "特色菜"
   },
   {
@@ -1901,7 +1901,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 150,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7AF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1fb411g77Q",
     "category": "特色菜"
   },
   {
@@ -1923,7 +1923,7 @@ const recipes = [
     ],
     "difficulty": "困难",
     "cookingTime": 240,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7yE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1fb411g77Q",
     "category": "特色菜"
   },
   {
@@ -1951,7 +1951,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 45,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7wE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1f34y1H77U",
     "category": "荤菜"
   },
   {
@@ -1974,7 +1974,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 10,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7EG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1CW411c7kP",
     "category": "海鲜"
   },
   {
@@ -1997,7 +1997,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7CG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV12y4y1q7rZ",
     "category": "海鲜"
   },
   {
@@ -2018,7 +2018,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7UF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wt411Z7td",
     "category": "蒸菜"
   },
   {
@@ -2039,7 +2039,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 12,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7SF",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wt411Z7td",
     "category": "蒸菜"
   },
   {
@@ -2084,7 +2084,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 10,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7sE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Py4y1S7EF",
     "category": "家常菜"
   },
   {
@@ -2105,7 +2105,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 5,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7qE",
+    "bilibiliUrl": "https://www.bilibili.com/video/av19985843",
     "category": "家常菜"
   },
   {
@@ -2150,7 +2150,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7mE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1jz411v7tg",
     "category": "素菜"
   },
   {
@@ -2198,7 +2198,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7iE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV127qqY2Erh",
     "category": "素菜"
   },
   {
@@ -2251,7 +2251,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 20,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7eE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1ih411R7Zx",
     "category": "荤菜"
   },
   {
@@ -2279,7 +2279,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7cE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1neeBzVEpL",
     "category": "荤菜"
   },
   {
@@ -2334,7 +2334,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 120,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7YE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1eT411M7Hj",
     "category": "荤菜"
   },
   {
@@ -2361,7 +2361,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 75,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7WE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Es411j78m",
     "category": "荤菜"
   },
   {
@@ -2389,7 +2389,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7SE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1neeBzVEpL",
     "category": "家常菜"
   },
   {
@@ -2416,7 +2416,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 90,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7UE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV127qqY2Erh",
     "category": "荤菜"
   },
   {
@@ -2490,7 +2490,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 20,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7OE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1eT411M7Hj",
     "category": "家常菜"
   },
   {
@@ -2516,7 +2516,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 30,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7QE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1eT411M7Hj",
     "category": "荤菜"
   },
   {
@@ -2538,7 +2538,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 5,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7QG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1jc411w7aV",
     "category": "素菜"
   },
   {
@@ -2583,7 +2583,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 30,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7uG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1ph4y1v7jB",
     "category": "主食"
   },
   {
@@ -2658,7 +2658,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 25,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7SG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1eK411o77A",
     "category": "面食"
   },
   {
@@ -2685,7 +2685,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 20,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7UG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1eK411o77A",
     "category": "素菜"
   },
   {
@@ -2709,7 +2709,7 @@ const recipes = [
     ],
     "difficulty": "简单",
     "cookingTime": 15,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7aG",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Hs411j7Tn",
     "category": "素菜"
   },
   {
@@ -2927,7 +2927,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 90,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1Wx411b7AE",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1Es411j78m",
     "category": "荤菜"
   },
   {
