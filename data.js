@@ -285,7 +285,7 @@ const recipes = [
     ],
     "difficulty": "中等",
     "cookingTime": 25,
-    "bilibiliUrl": "https://www.bilibili.com/video/BV1411127Hk",
+    "bilibiliUrl": "https://www.bilibili.com/video/BV1HW411c7Q2",
     "category": "川菜"
   },
   {
