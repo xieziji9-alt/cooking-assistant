@@ -1,0 +1,45 @@
+# Netlify配置文件 - 做菜小助手
+
+[build]
+  # 发布目录（项目根目录）
+  publish = "."
+  
+  # 构建命令（纯静态HTML项目不需要构建）
+  command = ""
+
+# 重定向规则 - 确保所有路由都指向index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 自定义HTTP头 - 优化性能和安全性
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 安全头
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # 缓存控制
+    Cache-Control = "public, max-age=3600"
+
+# 为静态资源设置更长的缓存时间
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.csv"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "text/csv; charset=utf-8"
+
