@@ -15,7 +15,6 @@
                 <button class="nav-btn active" onclick="showPage('home')">首页</button>
                 <button class="nav-btn" onclick="showPage('ingredients')">食材推荐</button>
                 <button class="nav-btn" onclick="showPage('random')">随机推荐</button>
-                <button class="nav-btn" onclick="showPage('test')">测试功能</button>
             </div>
         </nav>
 
@@ -34,11 +33,6 @@
                         <div class="feature-icon">🎲</div>
                         <h3>随机推荐</h3>
                         <p>从20道精选菜谱中随机推荐</p>
-                    </div>
-                    <div class="feature-card" onclick="showPage('test')">
-                        <div class="feature-icon">🔧</div>
-                        <h3>测试功能</h3>
-                        <p>验证功能和数据完整性</p>
                     </div>
                 </div>
             </div>
@@ -105,22 +99,6 @@
                 <button class="btn btn-large btn-primary" onclick="getRandomRecipe()">🎲 随机推荐一道菜</button>
                 <div id="random-result" class="random-result"></div>
             </div>
-        </div>
-
-        <!-- 测试功能页面 -->
-        <div id="test-page" class="page">
-            <div class="page-header">
-                <h2>🔧 测试功能</h2>
-                <p>验证各项功能和数据完整性</p>
-            </div>
-            <div class="test-buttons">
-                <button class="btn btn-test" onclick="testRecipeCount()">测试菜谱数量</button>
-                <button class="btn btn-test" onclick="testIngredientCoverage()">测试食材覆盖</button>
-                <button class="btn btn-test" onclick="testBilibiliLinks()">测试B站链接</button>
-                <button class="btn btn-test" onclick="testRecommendation()">测试推荐功能</button>
-                <button class="btn btn-test" onclick="validateAllData()">验证数据完整性</button>
-            </div>
-            <div id="test-results" class="test-results"></div>
         </div>
 
         <!-- 菜谱详情模态框 -->
